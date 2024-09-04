@@ -10,21 +10,23 @@ export default function Sidebar() {
       </div>
 
       <div className="flex flex-col flex-grow">
-        <nav className="flex flex-col gap-4 px-4 font-opensans">
+        <nav className="flex flex-col gap-8 px-4 font-opensans">
           <Link to="/">
             <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
               Clients Dashboard
             </div>
           </Link>
-          <Link to='/websitedaboard'>
+          <Link to='/websitedasboard'>
           <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Website Dashboard
           </a>
           </Link>
-        
-          <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+        <Link to='/jobs'>
+        <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Jobs
           </a>
+        </Link>
+       
           <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Notifications
           </a>
