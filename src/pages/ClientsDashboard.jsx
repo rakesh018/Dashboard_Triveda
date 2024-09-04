@@ -1,6 +1,12 @@
 import React from 'react';
 
 export default function ClientsDashboard() {
+  const clients = [
+    { name: 'Luffy', email: 'luffy@gmail.com', purpose: 'App Development' },
+    { name: 'Zoro', email: 'zoro@gmail.com', purpose: 'App Development' },
+    { name: 'Sanji', email: 'sanji@gmail.com', purpose: 'Web Development' },
+  ];
+
   return (
     <div className='w-full min-h-screen bg-black p-8 text-textColor-light font-opensans'>
       <div className='bg-gray-900 shadow-md rounded-md p-6 mb-8'>
@@ -14,25 +20,16 @@ export default function ClientsDashboard() {
               <th scope='col' className='px-6 py-3'>Client name</th>
               <th scope='col' className='px-6 py-3'>Email</th>
               <th scope='col' className='px-6 py-3'>Purpose</th>
-
             </tr>
           </thead>
           <tbody>
-            <tr className='bg-gray-950  border-b border-gray-50'>
-              <th scope='row' className='px-6 py-4 font-medium text-gray-50'>Luffy</th>
-              <td className='px-6 py-4 text-gray-50'>luffy@gmail.com</td>
-              <td className='px-6 py-4 text-gray-50'>App Development</td>
-            </tr>
-            <tr className='bg-gray-950 border-b border-gray-50'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-50'>Zoro</th>
-              <td className='px-6 py-4 text-gray-50'>zoro@gmail.com</td>
-              <td className='px-6 py-4 text-gray-50'>App Development</td>
-            </tr>
-            <tr className='bg-gray-950 border-b border-gray-50'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-50'>Sanji</th>
-              <td className='px-6 py-4 text-gray-50'>sanji@gmail.com</td>
-              <td className='px-6 py-4 text-gray-50'>Web Development</td>
-            </tr>
+            {clients.map((client, index) => (
+              <tr key={index} className={`bg-gray-950 ${index !== clients.length-1 ? 'border-b':''}  border-gray-50`}>
+                <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.name}</th>
+                <td className='px-6 py-4 text-gray-50'>{client.email}</td>
+                <td className='px-6 py-4 text-gray-50'>{client.purpose}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
