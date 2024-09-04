@@ -16,9 +16,12 @@ export default function Sidebar() {
               Clients Dashboard
             </div>
           </Link>
+          <Link to='/websitedaboard'>
           <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Website Dashboard
           </a>
+          </Link>
+        
           <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Jobs
           </a>
