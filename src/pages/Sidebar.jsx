@@ -1,27 +1,31 @@
 import React from 'react';
-
+import Logo from '../assets/images/logo.png'
+import { Link } from 'react-router-dom';
 export default function Sidebar() {
   return (
     <div className="h-screen w-64 bg-black  text-white flex flex-col justify-between border-r-[1px] border-opacity-5">
 
       <div className="p-4">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+       <img src={Logo} width={70} height={70}></img>
       </div>
       
   
       <nav className="flex flex-col gap-4 px-4">
-        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+       <Link to='/dashboard'>
+       <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
           Dashboard
         </a>
-        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+       </Link>
+        <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
           Profile
         </a>
-        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-          Settings
-        </a>
-        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+        <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
           Notifications
         </a>
+        <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+          Settings
+        </a>
+      
       </nav>
       
    
