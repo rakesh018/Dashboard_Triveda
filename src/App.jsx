@@ -7,7 +7,7 @@ export default function App() {
   <div className='flex '>
     <Sidebar></Sidebar>
     <Routes>
-    <Route path='/clientsdashboard' element={<ClientsDashboard/>}>
+    <Route path='/' element={<ClientsDashboard/>}>
     </Route>
    </Routes>
   </div>
