@@ -10,14 +10,17 @@ export default function Sidebar() {
       </div>
       
   
-      <nav className="flex flex-col gap-4 px-4">
-       <Link to='/dashboard'>
-       <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-          Dashboard
-        </a>
+      <nav className="flex flex-col gap-4 px-4 font-opensans">
+       <Link to='/clientsdashboard'>
+       <div  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+         Clients Dashboard
+        </div>
        </Link>
         <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-          Profile
+        Website Dashboard
+        </a>
+        <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+       Jobs
         </a>
         <a  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
           Notifications
