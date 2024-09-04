@@ -10,7 +10,7 @@ export default function App() {
     <Sidebar></Sidebar>
     <Routes>
     <Route path='/' element={<ClientsDashboard/>}/>
-    <Route path='/websitedasboard' element={<WebsiteDashboard/>}/>
+    <Route path='/websitedashboard' element={<WebsiteDashboard/>}/>
     <Route path='/jobs' element={<Jobs/>}/>
 
    </Routes>

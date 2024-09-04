@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   return (
-    <div className="h-screen w-64 bg-black text-white flex flex-col border-r-[1px] border-gray-700 border-opacity-50">
+    <div className="fixed h-screen w-64 bg-black text-white flex flex-col border-r-[1px] border-gray-700 border-opacity-50">
       <div className="p-4">
         <img src={Logo} width={70} height={70} alt="Logo" />
       </div>
@@ -16,23 +16,22 @@ export default function Sidebar() {
               Clients Dashboard
             </div>
           </Link>
-          <Link to='/websitedasboard'>
-          <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-            Website Dashboard
-          </a>
+          <Link to='/websitedashboard'>
+            <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+              Website Dashboard
+            </div>
           </Link>
-        <Link to='/jobs'>
-        <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-            Jobs
-          </a>
-        </Link>
-       
-          <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+          <Link to='/jobs'>
+            <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+              Jobs
+            </div>
+          </Link>
+          <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Notifications
-          </a>
-          <a className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
+          </div>
+          <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
             Settings
-          </a>
+          </div>
         </nav>
 
         <div className="p-4 mt-auto">
