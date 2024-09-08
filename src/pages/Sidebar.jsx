@@ -29,7 +29,7 @@ export default function Sidebar() {
                  Clients
                 </div>
               </Link>
-              <Link to='/websitedashboard/settings'>
+              <Link to='/websitedashboard/services'>
                 <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
                  Services
                 </div>
