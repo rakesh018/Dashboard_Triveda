@@ -24,7 +24,7 @@ export default function Sidebar() {
           </div>
           {isDropdownOpen && (
             <div className="left-0 right-3 w-44  bg-gray-800 rounded-md shadow-lg z-10">
-              <Link to='/websitedashboard/overview'>
+              <Link to='/websitedashboard/clients'>
                 <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
                  Clients
                 </div>
