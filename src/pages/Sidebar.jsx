@@ -44,7 +44,7 @@ export default function Sidebar() {
                  Portfolio
                 </div>
               </Link>
-              <Link to='/websitedashboard/reports'>
+              <Link to='/websitedashboard/fqas'>
                 <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
                  FAQ's
                 </div>

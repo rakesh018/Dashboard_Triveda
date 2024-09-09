@@ -2,7 +2,8 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import Sidebar from './pages/Sidebar'
 import ClientsDashboard  from './pages/ClientsDashboard'
 import WebsiteDashboard from './pages/WebsiteDashboard'
-import Jobs from './pages/Jobs'
+
+import FQA from './pages/subComponents/FQA'
 import Clients from './pages/subComponents/Clients'
 import Services from './pages/subComponents/Services'
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
 
     <Route path='/websitedashboard/clients' element={<Clients/>}/>
     <Route path='/websitedashboard/services'element={<Services/>}></Route>
+    <Route path='/websitedashboard/fqas'element={<FQA/>}></Route>
 
    </Routes>
   </div>
