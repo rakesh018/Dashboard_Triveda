@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import Spinner from '../components/Spinner';
 
 export default function ClientsDashboard() {
 const [clients,setClients] = useState([])
+const [loading,setLoading] = useState(true)
   useEffect(()=>{
    
     async function fetchContacts() 
@@ -13,6 +15,7 @@ const [clients,setClients] = useState([])
         setClients(data.data)
         console.log(data)
         console.log(clients)
+        setLoading(false)
       } catch (error) {
         console.log(error)
       }
@@ -30,7 +33,9 @@ const [clients,setClients] = useState([])
         <h1 className='text-3xl font-semibold text-gray-50'>Clients Dashboard</h1>
       </div>
       
-      <div className='bg-gray-950 shadow-md rounded-md p-6 font-opensans'>
+      {!loading ?
+      (
+        <div className='bg-gray-950 shadow-md rounded-md p-6 font-opensans'>
         <table className='w-full text-sm text-left text-gray-700'>
           <thead className='text-xs uppercase bg-gray-950 text-gray-50'>
             <tr>
@@ -53,6 +58,10 @@ const [clients,setClients] = useState([])
           </tbody>
         </table>
       </div>
+      )   : (
+        <Spinner/>
+      )
+    }
     </div>
   );
 }
