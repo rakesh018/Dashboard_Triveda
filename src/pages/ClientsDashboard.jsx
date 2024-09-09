@@ -9,7 +9,7 @@ const [clients,setClients] = useState([])
     {
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        const data = await axios.get(`${apiUrl}/api/contacts/getContacts`)
+        const data = await axios.get(`${apiUrl}/api/website/getContacts`)
         setClients(data.data)
         console.log(data)
         console.log(clients)
