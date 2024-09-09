@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 
 export default function ClientsDashboard() {
-  const clients = [
-    { name: 'Luffy', email: 'luffy@gmail.com', purpose: 'App Development', phone: '123-456-7890' },
-    { name: 'Zoro', email: 'zoro@gmail.com', purpose: 'App Development', phone: '987-654-3210' },
-    { name: 'Sanji', email: 'sanji@gmail.com', purpose: 'Web Development', phone: '555-555-5555' },
-  ];
+const [clients,setClients] = useState([])
+  useEffect(()=>{
+   
+    async function fetchContacts() 
+    {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const data = await axios.get(`${apiUrl}/api/contacts/getContacts`)
+        setClients(data.data)
+        console.log(data)
+        console.log(clients)
+      } catch (error) {
+        console.log(error)
+      }
+    } 
+
+    fetchContacts()
+  },[])
+ 
+
   
 
   return (
@@ -14,7 +30,7 @@ export default function ClientsDashboard() {
         <h1 className='text-3xl font-semibold text-gray-50'>Clients Dashboard</h1>
       </div>
       
-      <div className='bg-gray-900 shadow-md rounded-md p-6 font-opensans'>
+      <div className='bg-gray-950 shadow-md rounded-md p-6 font-opensans'>
         <table className='w-full text-sm text-left text-gray-700'>
           <thead className='text-xs uppercase bg-gray-950 text-gray-50'>
             <tr>
@@ -26,12 +42,12 @@ export default function ClientsDashboard() {
           </thead>
           <tbody>
             {clients.map((client, index) => (
-              <tr key={index} className={`bg-gray-950 ${index !== clients.length-1 ? 'border-b':''}  border-gray-50`}>
-                <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.name}</th>
-                <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.phone}</th>
+              <tr key={index} className={`bg-gray-950 ${index !== clients.length-1 ? 'border-b':''} hover:bg-gray-900 border-gray-50`}>
+                <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.clientName}</th>
+                <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.phoneNumber}</th>
 
                 <td className='px-6 py-4 text-gray-50'><a href={`mailto:${client.email}`}>{client.email}</a></td>
-                <td className='px-6 py-4 text-gray-50'>{client.purpose}</td>
+                <td className='px-6 py-4 text-gray-50'>{client.message}</td>
               </tr>
             ))}
           </tbody>
