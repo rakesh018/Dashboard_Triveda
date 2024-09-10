@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Spinner from '../../components/Spinner';
 
 export default function Clients() {
     const [clients, setClients] = useState([]);
     const [companyName, setCompanyName] = useState("");
     const [logo, setLogo] = useState("");
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         async function fetchClients() {
@@ -14,6 +16,8 @@ export default function Clients() {
                 setClients(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false); 
             }
         }
 
@@ -34,15 +38,14 @@ export default function Clients() {
             });
             setCompanyName(""); 
             setLogo(null);
-            setClients([...clients,response.data])
-          
+            setClients([...clients, response.data]);
         } catch (error) {
             console.log(error);
         }
     }
 
     return (
-        <div className='ml-52 bg-black w-full h-auto flex-row p-8 items-center justify-center '>
+        <div className='ml-52 bg-black w-full min-h-screen flex-row p-8 items-center justify-center'>
             <div className='bg-gray-900 shadow-md rounded-md p-6 mb-8'>
                 <h1 className='text-3xl font-semibold text-gray-50'>Clients Details</h1>
             </div>
@@ -84,18 +87,26 @@ export default function Clients() {
                             </tr>
                         </thead>
                         <tbody>
-                            {clients.map((client, index) => (
-                                <tr key={index} className={`bg-gray-950 ${index !== clients.length - 1 ? 'border-b' : ''} border-gray-50`}>
-                                    <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.companyName}</th>
-                                    <td className='px-6 py-4 text-gray-50'><img src={client.logo} width={20} height={20} alt="Client logo" /></td>
-                                    <td className='px-6 py-4 text-gray-50'>
-                                        <div className='flex gap-5'>
-                                            <button className='bg-green-500 px-3 py-2 rounded-md'>Update</button>
-                                            <button className='bg-red-700 px-3 py-2 rounded-md'>Delete</button>
-                                        </div>
+                            {loading ? (
+                                <tr>
+                                    <td colSpan="3" className='text-center py-4'>
+                                        <Spinner />
                                     </td>
                                 </tr>
-                            ))}
+                            ) : (
+                                clients.map((client, index) => (
+                                    <tr key={index} className={`bg-gray-950 ${index !== clients.length - 1 ? 'border-b' : ''} border-gray-50`}>
+                                        <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.companyName}</th>
+                                        <td className='px-6 py-4 text-gray-50'><img src={client.logo} width={20} height={20} alt="Client logo" /></td>
+                                        <td className='px-6 py-4 text-gray-50'>
+                                            <div className='flex gap-5'>
+                                                <button className='bg-green-500 px-3 py-2 rounded-md'>Update</button>
+                                                <button className='bg-red-700 px-3 py-2 rounded-md'>Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
