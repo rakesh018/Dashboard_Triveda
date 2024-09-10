@@ -9,7 +9,7 @@ import Services from './pages/subComponents/Services'
 export default function App() {
   return (
    <BrowserRouter>
-  <div className='flex '>
+  <div className='flex bg-gray-950'>
     <Sidebar></Sidebar>
     <Routes>
     <Route path='/' element={<ClientsDashboard/>}/>

@@ -14,7 +14,7 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-8 px-4 font-opensans">
           <Link to="/">
             <div className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-2">
-              Clients Dashboard
+              Contacts Dashboard
             </div> 
           </Link>
 
