@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
+import Spinner from '../components/Spinner';
+import Button from '../components/Button';
 
 export default function Clients() {
     const [clients, setClients] = useState([]);
     const [companyName, setCompanyName] = useState("");
-    const [logo, setLogo] = useState("");
+    const [logo, setLogo] = useState(null);
     const [loading, setLoading] = useState(true); 
+    const [buttonLoading, setButtonLoading] = useState(false);
 
     useEffect(() => {
         async function fetchClients() {
@@ -24,21 +26,36 @@ export default function Clients() {
         fetchClients();
     }, []);
 
-    async function handleAddClient() {
-        const formData = new FormData(); 
+    async function handleAddClient(event) {
+        event.preventDefault(); // Prevent default form submission
+        setButtonLoading(true);
+        
+        const formData = new FormData();
         formData.append('companyName', companyName);
         formData.append('image', logo);  
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL;
-            const response =  await axios.post(`${apiUrl}/api/website/addClientCompany`, formData, {
+            const response = await axios.post(`${apiUrl}/api/website/addClientCompany`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setCompanyName(""); 
+            setCompanyName("");
             setLogo(null);
             setClients([...clients, response.data]);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setButtonLoading(false);
+        }
+    }
+
+    async function handleDeleteClient(id) {
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            await axios.delete(`${apiUrl}/api/website/deleteClient/${id}`);
+            setClients(clients.filter(client => client._id !== id)); // Remove deleted client from the list
         } catch (error) {
             console.log(error);
         }
@@ -51,28 +68,25 @@ export default function Clients() {
             </div>
 
             <div className='bg-gray-900 w-full shadow-md rounded-md p-6 mb-8'>
-                <div className='mt-4 flex w-[500px] flex-col gap-4 items-left'>
+                <form onSubmit={handleAddClient} className='mt-4 flex w-[500px] flex-col gap-4 items-left'>
                     <input
                         type='text'
                         placeholder='Add Client Company Name'
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
+                        required
                         className='bg-gray-800 border border-gray-700 text-gray-200 w-[500px] px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-gray-600'
                     />
                     <input
                         type='file'
                         accept='image/*'
-                        onChange={(e) => setLogo(e.target.files[0])} // Correct file handling
+                        onChange={(e) => setLogo(e.target.files[0])}
+                        required
                         className='bg-gray-800 border border-gray-700 text-gray-200 w-[500px] px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-gray-600'
                     />
-                    <button
-                        onClick={handleAddClient}
-                        type="button"
-                        className="text-white font-bold bg-violet-950 hover:bg-violet-600 focus:ring-4 rounded-md text-sm px-5 py-3"
-                    >
-                        Add Client
-                    </button>
-                </div>
+
+                    <Button label="Add Client" handlebutton={handleAddClient} buttonLoading={buttonLoading} />
+                </form>
             </div>
 
             <div className='bg-gray-900 shadow-md rounded-md p-6 mb-8'>
@@ -90,18 +104,21 @@ export default function Clients() {
                             {loading ? (
                                 <tr>
                                     <td colSpan="3" className='text-center py-4'>
-                                        <Spinner />
+                                        Loading...
                                     </td>
                                 </tr>
                             ) : (
                                 clients.map((client, index) => (
                                     <tr key={index} className={`bg-gray-950 ${index !== clients.length - 1 ? 'border-b' : ''} border-gray-50`}>
                                         <th scope='row' className='px-6 py-4 font-medium text-gray-50'>{client.companyName}</th>
-                                        <td className='px-6 py-4 text-gray-50'><img src={client.logo} width={20} height={20} alt="Client logo" /></td>
                                         <td className='px-6 py-4 text-gray-50'>
-                                            <div className='flex gap-5'>
-                                                <button className='bg-green-500 px-3 py-2 rounded-md'>Update</button>
-                                                <button className='bg-red-700 px-3 py-2 rounded-md'>Delete</button>
+                                            <img src={client.logo} width={20} height={20} alt="Client logo" />
+                                        </td>
+                                        <td className='px-6 py-4 text-gray-50'>
+                                            <div className='flex gap-3'>
+                                              
+                                                <Button  label="Update" />
+                                                <Button handlebutton={() => handleDeleteClient(client._id)} label="Delete"    bgColor="bg-rose-600"  />
                                             </div>
                                         </td>
                                     </tr>

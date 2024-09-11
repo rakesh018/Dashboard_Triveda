@@ -2,7 +2,14 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", 
+  ],
+  safelist: [
+    'bg-rose-600',
+    'bg-blue-500',
+    'bg-green-400',
+    'bg-yellow-300',
+   
   ],
   theme: {
     extend: {
@@ -16,13 +23,12 @@ export default {
           light: '#cbd5e1',     
         },
       },
-      padding:{
+      padding: {
         globalY: '2.0rem',
         globalX: '1.5rem',
       },
       fontFamily: {
-        opensans: ['Open Sans','system-ui'],
-     
+        opensans: ['Open Sans', 'system-ui'],
       },
       animation: {
         'fade-in': 'fadeIn 1s ease-in-out',

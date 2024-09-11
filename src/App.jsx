@@ -3,9 +3,9 @@ import Sidebar from './pages/Sidebar'
 import ClientsDashboard  from './pages/ClientsDashboard'
 import WebsiteDashboard from './pages/WebsiteDashboard'
 
-import FQA from './pages/subComponents/FQA'
-import Clients from './pages/subComponents/Clients'
-import Services from './pages/subComponents/Services'
+import FQA from './pages/FQA'
+import Clients from './pages/Clients'
+import Services from './pages/Services'
 export default function App() {
   return (
    <BrowserRouter>

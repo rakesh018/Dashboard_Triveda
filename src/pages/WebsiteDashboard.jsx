@@ -1,5 +1,5 @@
 import React from 'react';
-import Clients from './subComponents/Clients';
+import Clients from './Clients';
 
 export default function WebsiteDashboard() {
     return (
